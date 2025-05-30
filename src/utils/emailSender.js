@@ -9,12 +9,20 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const sendPasswordEmail = (email, password) => {
+const sendPasswordEmail = (email, username, password) => {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: 'Password Akun Stroke Detection System',
-        text: `Berikut password untuk akun Anda: ${password}\n\nSilakan login menggunakan email dan password ini.`
+        subject: 'Aktivasi Akun Stroke Detection System',
+        html: `
+        <h2>Aktivasi Akun Berhasil</h2>
+        <p>Berikut adalah kredensial untuk akun Anda:</p>
+        <table>
+          <tr><td>Username</td><td><b>${username}</b></td></tr>
+          <tr><td>Password</td><td><b>${password}</b></td></tr>
+        </table>
+        <p>Silakan login menggunakan kredensial di atas.</p>
+      `
     };
 
     return transporter.sendMail(mailOptions);

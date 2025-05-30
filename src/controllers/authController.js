@@ -41,25 +41,29 @@ const register = async (req, res) => {
  * @route /auth/login
  * @desc Login user dan mendapatkan token JWT
  */
+// Add or update in your authController.js file
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        // Cari user
+        // Find user by username
         const user = await Users.findOne({ where: { username } });
         if (!user) {
-            return res.status(401).json({ error: 'Username tidak terdaftar' });
+            return res.status(404).json({ error: 'User tidak ditemukan' });
         }
 
-        // Cek password
+        // Check password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ error: 'Username atau Password salah' });
+            return res.status(401).json({ error: 'Password salah' });
         }
 
-        // Generate token
+        // Create token with consistent structure
         const token = jwt.sign(
-            { id: user.NIP, role: user.role },
+            {
+                NIP: user.NIP,  // Use consistent property name
+                role: user.role
+            },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
@@ -69,8 +73,9 @@ const login = async (req, res) => {
             token,
             user: {
                 NIP: user.NIP,
-                nama_lengkap: user.nama_lengkap,
-                role: user.role
+                username: user.username,
+                role: user.role,
+                // Other user info you want to return
             }
         });
     } catch (error) {
