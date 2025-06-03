@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "aa1aa958-b520-46dd-b6dc-477ff32b7c1c",
+		"name": "Stroke_db",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39478503"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"NIP\": \"123456\",\r\n  \"email\": \"aa@example.com\",\r\n  \"nama_lengkap\": \"Nanang Ardiansyah Sp.og.\",\r\n  \"jabatan\": \"Dokter Spesialis Bedah\",\r\n  \"instansi\": \"Rumah Sakit Dr Oen\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"user\",\r\n  \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users (Admin)",
+			"item": [
+				{
+					"name": "Get User Pending",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ4NjAzODc3LCJleHAiOjE3NDg2MDc0Nzd9.QQvHuOr-2L8f0XTQuuNOiJGVq9jEBJFj_xCcs4KajpA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ4NDEzNjY0LCJleHAiOjE3NDg0MTcyNjR9.WlAdmpEmyB1Mk0rGvMJpmTdP6Z2d6q0PB5fmJAUzpkE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/users/pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"users",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ4NjAzODc3LCJleHAiOjE3NDg2MDc0Nzd9.QQvHuOr-2L8f0XTQuuNOiJGVq9jEBJFj_xCcs4KajpA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ4NDEzNjY0LCJleHAiOjE3NDg0MTcyNjR9.WlAdmpEmyB1Mk0rGvMJpmTdP6Z2d6q0PB5fmJAUzpkE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ4NjAzODc3LCJleHAiOjE3NDg2MDc0Nzd9.QQvHuOr-2L8f0XTQuuNOiJGVq9jEBJFj_xCcs4KajpA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/admin/users/12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"admin",
+								"users",
+								"12345"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prediction",
+			"item": [
+				{
+					"name": "Prediction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxMjM0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ4OTAzNzczLCJleHAiOjE3NDg5MDczNzN9.Tvh5P41U_2Vxv-5ty7ZIg_cq3ceUG8pcs2jGG4BFO0M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama",
+									"value": "John Doe",
+									"type": "text"
+								},
+								{
+									"key": "jenis_kelamin",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Jalan ABC No 123",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_lahir",
+									"value": "1990-01-01",
+									"type": "text"
+								},
+								{
+									"key": "umur",
+									"value": "24",
+									"type": "text"
+								},
+								{
+									"key": "detak_jantung",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "diabetes",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "kolesterol",
+									"value": "180",
+									"type": "text"
+								},
+								{
+									"key": "gambar_MRI",
+									"type": "file",
+									"src": "postman-cloud:///1f040027-0e14-4890-912f-2643e7055171"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/patients/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"patients",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Prediction",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxMjM0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ4OTEzODI3LCJleHAiOjE3NDg5MTc0Mjd9.gPH6dd1XCWsr5IKkVxVmIhOCYvp4CFR2gJbdTsZN8rQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama",
+									"value": "John Doe",
+									"type": "text"
+								},
+								{
+									"key": "jenis_kelamin",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Jalan ABC No 123",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_lahir",
+									"value": "1990-01-01",
+									"type": "text"
+								},
+								{
+									"key": "umur",
+									"value": "24",
+									"type": "text"
+								},
+								{
+									"key": "detak_jantung",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "diabetes",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "kolesterol",
+									"value": "180",
+									"type": "text"
+								},
+								{
+									"key": "gambar_MRI",
+									"type": "file",
+									"src": "postman-cloud:///1f040027-0e14-4890-912f-2643e7055171"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/patients/predictions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"patients",
+								"predictions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Get All Patient",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxMjM0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ4OTEzODI3LCJleHAiOjE3NDg5MTc0Mjd9.gPH6dd1XCWsr5IKkVxVmIhOCYvp4CFR2gJbdTsZN8rQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama",
+									"value": "John Doe",
+									"type": "text"
+								},
+								{
+									"key": "jenis_kelamin",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Jalan ABC No 123",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_lahir",
+									"value": "1990-01-01",
+									"type": "text"
+								},
+								{
+									"key": "umur",
+									"value": "24",
+									"type": "text"
+								},
+								{
+									"key": "detak_jantung",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "diabetes",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "kolesterol",
+									"value": "180",
+									"type": "text"
+								},
+								{
+									"key": "gambar_MRI",
+									"type": "file",
+									"src": "postman-cloud:///1f040027-0e14-4890-912f-2643e7055171"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/patients/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"patients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxMjM0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ4OTEzODI3LCJleHAiOjE3NDg5MTc0Mjd9.gPH6dd1XCWsr5IKkVxVmIhOCYvp4CFR2gJbdTsZN8rQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/patients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Examinations",
+			"item": [
+				{
+					"name": "Get All Examination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxMjM0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ4OTEzODI3LCJleHAiOjE3NDg5MTc0Mjd9.gPH6dd1XCWsr5IKkVxVmIhOCYvp4CFR2gJbdTsZN8rQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/patients/examinations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"patients",
+								"examinations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Examination By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOSVAiOiIxMjM0NSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQ4OTEwMDgzLCJleHAiOjE3NDg5MTM2ODN9.lImPodFqiO-MvM0np7CTDIRhLnBH_p8C_8SLjPDwtUk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama",
+									"value": "John Doe",
+									"type": "text"
+								},
+								{
+									"key": "jenis_kelamin",
+									"value": "Laki-laki",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Jalan ABC No 123",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_lahir",
+									"value": "1990-01-01",
+									"type": "text"
+								},
+								{
+									"key": "umur",
+									"value": "24",
+									"type": "text"
+								},
+								{
+									"key": "detak_jantung",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "diabetes",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "kolesterol",
+									"value": "180",
+									"type": "text"
+								},
+								{
+									"key": "gambar_MRI",
+									"type": "file",
+									"src": "postman-cloud:///1f040027-0e14-4890-912f-2643e7055171"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/patients/examinations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"patients",
+								"examinations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -41,27 +41,26 @@ const register = async (req, res) => {
  * @route /auth/login
  * @desc Login user dan mendapatkan token JWT
  */
-// Add or update in your authController.js file
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
 
-        // Find user by username
+        // Cari user berdasarkan nama
         const user = await Users.findOne({ where: { username } });
         if (!user) {
             return res.status(404).json({ error: 'User tidak ditemukan' });
         }
 
-        // Check password
+        // Cek password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ error: 'Password salah' });
         }
 
-        // Create token with consistent structure
+        // Buat token
         const token = jwt.sign(
             {
-                NIP: user.NIP,  // Use consistent property name
+                NIP: user.NIP,
                 role: user.role
             },
             process.env.JWT_SECRET,
@@ -75,7 +74,6 @@ const login = async (req, res) => {
                 NIP: user.NIP,
                 username: user.username,
                 role: user.role,
-                // Other user info you want to return
             }
         });
     } catch (error) {

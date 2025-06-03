@@ -2,6 +2,12 @@ const bcrypt = require('bcryptjs');
 const Users = require('../models/userModel');
 const { sendPasswordEmail } = require('../utils/emailSender');
 
+
+/**
+ * @method GET
+ * @route /admin/users/pending
+ * @desc Mendapatkan daftar user yang belum disetujui (password masih null)
+ */
 const getPendingUsers = async (req, res) => {
     try {
         const users = await Users.findAll({
@@ -15,6 +21,11 @@ const getPendingUsers = async (req, res) => {
     }
 };
 
+/**
+ * @method GET
+ * @route /admin/users
+ * @desc Mendapatkan daftar semua user
+ */
 const getAllUsers = async (req, res) => {
     try {
         const users = await Users.findAll({
@@ -40,7 +51,11 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// Fungsi untuk mendapatkan data user berdasarkan NIP
+/**
+ * @method GET
+ * @route /admin/users/:nip
+ * @desc Mendapatkan data user berdasarkan NIP
+ */
 const getUserbyNIP = async (req, res) => {
     try {
         const { nip } = req.params;
@@ -65,7 +80,11 @@ const getUserbyNIP = async (req, res) => {
     }
 };
 
-// Fungsi untuk mengedit data user berdasarkan NIP
+/**
+ * @method PUT
+ * @route /admin/users/:nip
+ * @desc Update data user berdasarkan NIP
+ */
 const updateUserbyNIP = async (req, res) => {
     try {
         const { nip } = req.params;
@@ -143,6 +162,11 @@ const updateUserbyNIP = async (req, res) => {
 //     }
 // };
 
+/**
+ * @method DELETE
+ * @route /admin/users/:nip
+ * @desc Hapus user berdasarkan NIP
+ */
 const removeUser = async (req, res) => {
     try {
         const { nip } = req.params;

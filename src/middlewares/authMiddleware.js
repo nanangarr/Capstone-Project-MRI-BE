@@ -19,10 +19,9 @@ const authenticate = (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
     try {
-        // Debug info to check what's in the token
         console.log('User in token:', req.user);
 
-        // Assuming the token contains either id: NIP or NIP directly
+        // Ambil NIP dari token
         const nip = req.user.NIP || req.user.id || req.user.nip;
 
         if (!nip) {

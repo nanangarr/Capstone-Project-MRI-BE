@@ -1,50 +1,23 @@
-const Users = require('./userModel');
 const Patient = require('./patientModel');
 const Examination = require('./examinationModel');
 const Analysis = require('./analysisModel');
+const Users = require('./userModel');
 
-// Relasi User (1) - (M) Patient
-Users.hasMany(Patient, {
-    foreignKey: {
-        name: 'NIP',
-        allowNull: false
-    },
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
-Patient.belongsTo(Users, {
-    foreignKey: 'NIP'
-});
+// Relasi: Pasien dimiliki oleh User (dokter/tenaga kesehatan)
+Patient.belongsTo(Users, { foreignKey: 'NIP' });
+Users.hasMany(Patient, { foreignKey: 'NIP' });
 
-// Relasi Patient (1) - (M) Examination
-Patient.hasMany(Examination, {
-    foreignKey: {
-        name: 'pasien_id',
-        allowNull: false
-    },
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
-Examination.belongsTo(Patient, {
-    foreignKey: 'pasien_id'
-});
+// Relasi: Pemeriksaan dimiliki oleh Pasien
+Examination.belongsTo(Patient, { foreignKey: 'pasien_id', as: 'pasiens' });
+Patient.hasMany(Examination, { foreignKey: 'pasien_id', as: 'pemeriksaans' });
 
-// Relasi Examination (1) - (M) Analysis
-Examination.hasMany(Analysis, {
-    foreignKey: {
-        name: 'pemeriksaan_id',
-        allowNull: false
-    },
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-});
-Analysis.belongsTo(Examination, {
-    foreignKey: 'pemeriksaan_id'
-});
+// Relasi: Hasil Analisis dimiliki oleh Pemeriksaan
+Analysis.belongsTo(Examination, { foreignKey: 'pemeriksaan_id' });
+Examination.hasOne(Analysis, { foreignKey: 'pemeriksaan_id', as: 'hasil_analises' });
 
 module.exports = {
-    Users,
     Patient,
     Examination,
-    Analysis
+    Analysis,
+    Users
 };
